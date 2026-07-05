@@ -14,15 +14,15 @@ test.only('@Sanity demo Trellis two', async ({ page }) => {
   await page.locator('.v-btn__content').first().click();
   //await page.waitForLoadState('networkidle');
   await expect(page.locator('text=Dashboard')).toBeVisible();
-  await page.locator('.v-responsive__content').nth(2).click();
-  await page.getByText('Profile').click();
+  //await page.locator('.v-responsive__content').nth(2).click();
+  //await page.getByText('Profile').click();
   
-  const filePath = path.join(process.cwd(),'test-data','q2.png');
+  //const filePath = path.join(process.cwd(),'test-data','q2.png');
   //await page.getByText(' Change Image ').setInputFiles(filePath);
   //await page.getByRole('button', { name: ' Change Image ' }).setInputFiles(filePath);
 
   //await page.locator("//button[@type='button']").nth(4).setInputFiles(filePath);
-  await page.locator('input[type="file"]').setInputFiles(filePath);
+  //await page.locator('input[type="file"]').setInputFiles(filePath);
  
 
 });

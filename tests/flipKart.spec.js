@@ -11,13 +11,13 @@ test('Flipkart Search Test', async ({ page }) => {
   await expect(electronicsLink).toBeVisible();
   await electronicsLink.click();
 
-  const audioLink = page.locator('a', { hasText: 'Audio' });
+  const audioLink = page.getByRole('link', { name: 'Camera ' });
   await expect(audioLink).toBeVisible();
   await audioLink.click();
   await page.waitForLoadState('networkidle');
-  const MotoProducts = await page.locator(':has-text("Limited time dealss")');
+  /*const MotoProducts = await page.locator(':has-text("Limited time dealss")');
   const count = await MotoProducts.count();
-  console.log(`Number of Moto products found: ${count}`);
+  console.log(`Number of Moto products found: ${count}`);*/
 });
 
 
