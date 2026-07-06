@@ -2,7 +2,7 @@
 const { test, expect } = require('@playwright/test');
 const path = require('path');
 
-test.only('@Sanity demo Trellis two', async ({ page }) => {
+test('@Sanity demo Trellis two', async ({ page }) => {
  
   await page.goto('https://uat.trellisplatform.com/');
   await expect(page).toHaveTitle("Trellis");  
