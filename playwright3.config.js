@@ -4,5 +4,6 @@ export default defineConfig({
   use: {
     baseURL: 'https://uat.trellisplatform.com',
     headless: true,
+    workers : 2
   },
 });

@@ -4,9 +4,8 @@ import fs from 'fs';
 
 const authFile = path.join(process.cwd(), 'storageState.json');
 
-if (!fs.existsSync(authFile)) {
-  fs.writeFileSync(authFile, JSON.stringify({ cookies: [], origins: [] }));
-}
+
+test.describe('Issuer tests', () => { // Run tests in this file serially
 
 test.use({ storageState: authFile });
 
@@ -18,7 +17,7 @@ test.beforeAll(async ({ browser }) => {
   const page = await context.newPage();
 
   await page.goto('/issuers/pages/login'); // baseURL is applied automatically
-   await page.locator('text=Your Email').fill("sprint-37.2.1-issuer@username.com");
+   await page.locator('text=Your Email').fill("uatissuer@editor.com");
   await page.locator('//input[@type="password"]').nth(1).fill("Indexnine@123");
   //await expect(page.locator('.v-btn__content')).toBeEnabled();
   await page.locator('.v-btn__content').first().click();
@@ -50,13 +49,14 @@ test.afterEach(async ({ page }, testInfo) => {
   }
 });
 
-test('dashboard loads correctly', async ({ page }) => {
+test('issuer data forms displayed', async ({ page }) => {
   await page.goto('/issuers/issuer-data/forms');   // ✅ relative path
   await expect(page.locator('.action')).toHaveText('Action');
 });
 
-test('profile page loads correctly', async ({ page }) => {
+test('issuer data documents displayed', async ({ page }) => {
   await page.goto('/issuers/issuer-data/dataroom');     // ✅ relative path
  await expect(page.getByText('All Documents')).toHaveText('All Documents');
 
 });
+})

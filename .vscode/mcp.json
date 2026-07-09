@@ -6,8 +6,8 @@
 			"command": "npx",
 			"cwd": "${workspaceFolder}",
 			"args": [
-				"@playwright/mcp@0.0.77",
-				"--some-argument=value"
+				"@playwright/mcp@0.0.77"
+				
 			],
 			"env": {}
 		}
