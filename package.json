@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:qa": "powershell -Command \"$env:TARGET_ENV='QA'; npx playwright test --config=playwright.config2.js tests/baseurl.spec.js --headed\"",
+    "test:uat": "powershell -Command \"$env:TARGET_ENV='UAT'; npx playwright test --config=playwright.config2.js tests/baseurl.spec.js --headed\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

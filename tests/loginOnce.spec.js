@@ -15,7 +15,6 @@ let webContext;
   await context.storageState({ path: 'state.json' });
   webContext = await browser.newContext({ storageState: 'state.json' });
 });
-
 test('Validate issuer forms', async () => {
 
   const page = await webContext.newPage();
@@ -25,10 +24,11 @@ test('Validate issuer forms', async () => {
   await expect(page.locator('text= Add Form ')).toBeVisible();
   await page.locator('//input[@type="text"]').fill('Legal - Bronze');
   await page.getByText('Legal - Bronze').click();
-  await page.getByRole('button', { name: 'Add' }).click();
+  await page.locator('//span[text()=" Add "]').last().click();
+
+  //await page.getByRole('button', { name: ' Add ' }).click();
   // Add more assertions or interactions as needed
 });
-
 test('Validate opportunities', async () => {
 
   const page = await webContext.newPage();
@@ -37,6 +37,5 @@ test('Validate opportunities', async () => {
   
   // Add more assertions or interactions as needed
 });
-
 
 

@@ -1,6 +1,11 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
 
+const targetEnvironment = (process.env.TARGET_ENV || process.env.ENV || 'UAT').toUpperCase();
+const baseURL = process.env.PLAYWRIGHT_BASE_URL || (targetEnvironment === 'QA'
+  ? 'https://qa.trellisplatform.com'
+  : 'https://uat.trellisplatform.com');
+
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -16,7 +21,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-     baseURL: 'https://uat.trellisplatform.com/',
+    baseURL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
