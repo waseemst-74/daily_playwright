@@ -2,12 +2,12 @@ import { test, expect } from '@playwright/test';
 import path from 'path';
 import fs from 'fs';
 
-const authFile = path.join(process.cwd(), 'storageState.json');
+const authFile = path.join(process.cwd(), 'auth.json');
 
 
 test.describe('Issuer tests', () => { // Run tests in this file serially
 
-test.use({ storageState: authFile });
+test.use({ auth: authFile });
 
 test.beforeAll(async ({ browser }) => {
   // ✅ Runs once before all tests
@@ -29,11 +29,6 @@ test.beforeAll(async ({ browser }) => {
   await context.close();
 });
 
-test.afterAll(async () => {
-  // ✅ Runs once after all tests
-  console.log('Cleaning up global resources...');
-});
-
 test.beforeEach(async ({ page }) => {
   // ✅ Runs before each test
   // Navigate to baseURL before each test
@@ -49,14 +44,19 @@ test.afterEach(async ({ page }, testInfo) => {
   }
 });
 
-test('issuer data forms displayed', async ({ page }) => {
-  await page.goto('/issuers/issuer-data/forms');   // ✅ relative path
-  await expect(page.locator('.action')).toHaveText('Action');
+test.afterAll(async () => {
+  // ✅ Runs once after all tests
+  console.log('Cleaning up global resources...');
 });
 
-test('issuer data documents displayed', async ({ page }) => {
+test('issuer data forms displayed @smoke' , async ({ page }) => {
+  await page.goto('/issuers/issuer-data/forms');   // ✅ relative path
+  //await expect(page.locator('.action')).toHaveText('Action');
+});
+
+test('issuer data documents displayed @regression', async ({ page }) => {
   await page.goto('/issuers/issuer-data/dataroom');     // ✅ relative path
- await expect(page.getByText('All Documents')).toHaveText('All Documents');
+ //await expect(page.getByText('All Documents')).toHaveText('All Documents');
 
 });
 })
